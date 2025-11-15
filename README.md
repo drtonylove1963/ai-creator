@@ -89,6 +89,7 @@ The GUI provides:
 - **Single Agent Execution**: Run individual agents with easy configuration
 - **Multi-Agent Orchestration**: Coordinate multiple agents visually
 - **Agent Tools**: Explore and test available tools
+- **Skills Management**: Import, create, and manage agent skills
 - **Execution History**: View and analyze past runs
 - **Built-in Documentation**: Integrated help and examples
 

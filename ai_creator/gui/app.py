@@ -14,6 +14,7 @@ from ai_creator import (
 from ai_creator.gui.agent_ui import create_agent_interface
 from ai_creator.gui.manager_ui import create_manager_interface
 from ai_creator.gui.tools_ui import create_tools_interface
+from ai_creator.gui.skills_ui import create_skills_interface
 
 
 # Global state
@@ -53,12 +54,16 @@ def create_app() -> gr.Blocks:
             with gr.Tab("🔧 Tools", id=2):
                 create_tools_interface()
 
-            # Tab 4: History & Results
-            with gr.Tab("📊 History", id=3):
+            # Tab 4: Skills Management
+            with gr.Tab("🎓 Skills", id=3):
+                create_skills_interface()
+
+            # Tab 5: History & Results
+            with gr.Tab("📊 History", id=4):
                 create_history_interface(execution_history)
 
-            # Tab 5: Documentation
-            with gr.Tab("📖 Documentation", id=4):
+            # Tab 6: Documentation
+            with gr.Tab("📖 Documentation", id=5):
                 create_documentation_interface()
 
         # Footer

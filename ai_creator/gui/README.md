@@ -29,6 +29,14 @@ The GUI provides an intuitive, browser-based interface for creating, configuring
 - View tool documentation
 - Understand tool parameters and outputs
 
+### 🎓 Skills Management
+- Browse and load built-in skills
+- Import custom skills via file upload
+- Create new skills using templates
+- View skill statistics and performance
+- Filter and search skills by category
+- Export skill configurations
+
 ### 📊 Execution History
 - View past agent executions
 - Analyze results and performance
@@ -107,6 +115,44 @@ app.launch(server_port=7860)
 7. **Review Results**: See how agents worked together
 
 ### Tools Tab
+
+1. **Select Tool**: Choose from available tools
+2. **View Info**: See tool description and parameters
+3. **Enter Input**: Provide test data
+4. **Test**: Run the tool
+5. **See Results**: View output and details
+
+### Skills Tab
+
+The Skills Management tab has four sub-tabs:
+
+**Browse Skills:**
+1. **Load Built-in Skills**: Click to load all 12 pre-built skills
+2. **Filter by Category**: Choose code, research, communication, or data
+3. **Search**: Find skills by name or description
+4. **View Details**: Select a skill to see full information
+5. **Manage Registry**: Clear or refresh the skills list
+
+**Import Skills:**
+1. **Upload File**: Select a Python (.py) file containing your custom skill
+2. **Review**: Check the imported skill's details
+3. **Register**: Add the skill to the system registry
+4. **Use**: Skills become available to all agents
+
+**Create Skills:**
+1. **Configure**: Enter skill name, description, category, and author
+2. **Generate**: Create a template with best practices
+3. **Download**: Save the template file to your computer
+4. **Edit**: Customize the template for your needs
+5. **Import**: Upload back when ready
+
+**Statistics:**
+1. **Load Stats**: View overall registry statistics
+2. **Select Skill**: Choose a specific skill
+3. **View Metrics**: See execution count, success rate, timing
+4. **Monitor**: Track skill performance over time
+
+### History Tab
 
 1. **Select Tool**: Choose from available tools
 2. **View Info**: See tool description and parameters
