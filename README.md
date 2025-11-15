@@ -11,8 +11,10 @@ AI Creator is a framework designed to help developers build AI applications with
 - **Modular Architecture**: Easy to extend and customize for your needs
 - **Agent System**: Build autonomous AI agents that can think and act
 - **Multi-Agent Orchestration**: Coordinate multiple agents working together
+- **Skills System**: Agents can learn and use specialized capabilities
 - **Web-Based GUI**: Intuitive interface for managing and running agents
 - **Pre-built Agents**: TextAgent, ImageAgent, and AnalysisAgent ready to use
+- **Built-in Skills**: 12+ ready-to-use skills for code, research, communication, and data
 - **Tool Registry**: Extensible tools that agents can use
 - **Memory System**: Agents can remember past interactions
 - **Simple API**: Intuitive interface for common AI tasks
@@ -162,6 +164,74 @@ result = manager.collaborate(
 )
 ```
 
+## Skills System
+
+Agents can learn and use specialized capabilities called skills:
+
+### Using Built-in Skills
+
+```python
+from ai_creator import TextAgent
+from ai_creator.skills.builtin import CodeGenerationSkill, SummarizationSkill
+
+# Create agent and add skills
+agent = TextAgent(name="SkillfulAgent")
+agent.add_skill(CodeGenerationSkill())
+agent.add_skill(SummarizationSkill())
+
+# Use a skill
+result = agent.use_skill(
+    "code_generation",
+    {"description": "Create a function to sort a list"}
+)
+print(result.output)
+```
+
+### Available Skill Categories
+
+- **Code**: code_generation, code_review, debug
+- **Research**: web_search, summarization, fact_check
+- **Communication**: email_writing, report_generation, translation
+- **Data**: data_analysis, data_visualization, data_cleaning
+
+### Creating Custom Skills
+
+```python
+from ai_creator import Skill, SkillConfig, SkillResult, SkillCategory
+
+class MySkill(Skill):
+    def __init__(self):
+        config = SkillConfig(
+            name="my_skill",
+            description="Custom skill",
+            category=SkillCategory.CUSTOM
+        )
+        super().__init__(config)
+
+    def execute(self, input_data, **kwargs):
+        # Your skill logic
+        return SkillResult(
+            skill_name=self.config.name,
+            success=True,
+            output="Result"
+        )
+```
+
+Or use the template generator:
+
+```python
+from ai_creator import create_skill_template
+
+template = create_skill_template(
+    name="MySkill",
+    description="Does something amazing",
+    category="custom",
+    output_path="my_skill.py"
+)
+```
+
+See `ai_creator/skills/README.md` for comprehensive skill documentation.
+
 ## Project Structure
 
 ```
@@ -176,6 +246,15 @@ ai-creator/
 │   │   ├── image_agent.py
 │   │   ├── analysis_agent.py
 │   │   └── tools.py     # Agent tools
+│   ├── skills/          # Skills system
+│   │   ├── base.py      # Base skill classes
+│   │   ├── registry.py  # Skill registry
+│   │   ├── loader.py    # Skill loading/creation
+│   │   └── builtin/     # Built-in skills
+│   │       ├── code_skills.py
+│   │       ├── research_skills.py
+│   │       ├── communication_skills.py
+│   │       └── data_skills.py
 │   ├── gui/             # Web-based GUI
 │   │   ├── app.py       # Main Gradio application
 │   │   ├── agent_ui.py  # Single agent interface
@@ -187,6 +266,7 @@ ai-creator/
 │   ├── agent_basics.py
 │   ├── agent_manager.py
 │   ├── custom_agent.py
+│   ├── skills_example.py
 │   └── gui_example.py
 ├── tests/               # Test suite
 ├── launch_gui.py        # GUI launcher script
@@ -202,6 +282,7 @@ See the `examples/` directory for comprehensive examples:
 - `agent_basics.py`: Individual agent usage
 - `agent_manager.py`: Multi-agent orchestration
 - `custom_agent.py`: Creating custom agents
+- `skills_example.py`: Using skills with agents
 - `gui_example.py`: Launching the GUI programmatically
 
 Run any example:

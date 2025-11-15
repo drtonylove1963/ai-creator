@@ -27,6 +27,7 @@ class AgentConfig:
     temperature: float = 0.7
     max_iterations: int = 10
     tools: List[str] = field(default_factory=list)
+    skills: List[str] = field(default_factory=list)  # Available skills
     memory_enabled: bool = True
     metadata: Dict[str, Any] = field(default_factory=dict)
 
@@ -76,6 +77,7 @@ class Agent(ABC):
         self.status = AgentStatus.IDLE
         self.memory: List[Dict[str, Any]] = []
         self.iteration_count = 0
+        self.skills: Dict[str, Any] = {}  # Loaded skills
 
     @abstractmethod
     def think(self, input_data: Any) -> str:
@@ -217,6 +219,91 @@ class Agent(ABC):
         # By default, keep original input
         # Override in subclasses for different behavior
         return original_input
+
+    def add_skill(self, skill: Any) -> None:
+        """
+        Add a skill to the agent.
+
+        Args:
+            skill: Skill instance to add
+        """
+        self.skills[skill.config.name] = skill
+
+    def remove_skill(self, skill_name: str) -> bool:
+        """
+        Remove a skill from the agent.
+
+        Args:
+            skill_name: Name of skill to remove
+
+        Returns:
+            True if removed, False if not found
+        """
+        if skill_name in self.skills:
+            del self.skills[skill_name]
+            return True
+        return False
+
+    def has_skill(self, skill_name: str) -> bool:
+        """
+        Check if agent has a specific skill.
+
+        Args:
+            skill_name: Name of skill to check
+
+        Returns:
+            True if agent has the skill
+        """
+        return skill_name in self.skills
+
+    def use_skill(self, skill_name: str, input_data: Any, **kwargs) -> Any:
+        """
+        Use a skill.
+
+        Args:
+            skill_name: Name of skill to use
+            input_data: Input for the skill
+            **kwargs: Additional arguments
+
+        Returns:
+            SkillResult from execution
+
+        Raises:
+            ValueError: If skill not found
+        """
+        if skill_name not in self.skills:
+            raise ValueError(f"Agent does not have skill '{skill_name}'")
+
+        return self.skills[skill_name].run(input_data, **kwargs)
+
+    def list_skills(self) -> List[str]:
+        """
+        List all skills the agent has.
+
+        Returns:
+            List of skill names
+        """
+        return list(self.skills.keys())
+
+    def get_skill_info(self, skill_name: Optional[str] = None) -> Dict:
+        """
+        Get information about agent's skills.
+
+        Args:
+            skill_name: Optional specific skill name
+
+        Returns:
+            Skill information
+        """
+        if skill_name:
+            if skill_name not in self.skills:
+                raise ValueError(f"Skill '{skill_name}' not found")
+            return self.skills[skill_name].get_info()
+
+        return {
+            name: skill.get_info()
+            for name, skill in self.skills.items()
+        }
 
     def reset(self) -> None:
         """Reset the agent to initial state."""

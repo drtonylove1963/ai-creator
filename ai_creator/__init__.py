@@ -15,6 +15,17 @@ from ai_creator.agents import (
     ImageAgent,
     AnalysisAgent,
 )
+from ai_creator.skills import (
+    Skill,
+    SkillConfig,
+    SkillResult,
+    SkillCategory,
+    SkillRegistry,
+    skill_registry,
+    SkillLoader,
+    load_skill,
+    create_skill_template,
+)
 
 # GUI module - optional import (requires gradio)
 try:
@@ -34,6 +45,16 @@ __all__ = [
     "TextAgent",
     "ImageAgent",
     "AnalysisAgent",
+    # Skills
+    "Skill",
+    "SkillConfig",
+    "SkillResult",
+    "SkillCategory",
+    "SkillRegistry",
+    "skill_registry",
+    "SkillLoader",
+    "load_skill",
+    "create_skill_template",
 ]
 
 # Add GUI exports if available
