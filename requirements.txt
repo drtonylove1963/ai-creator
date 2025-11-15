@@ -9,10 +9,10 @@ python-dotenv>=1.0.0
 # pillow>=10.0.0
 
 # Utilities
-pydantic>=2.7.2,<3.0.0
-httpx>=0.27.0
-uvicorn>=0.34.0
-pyjwt>=2.9.0,<3.0.0
+# Note: pydantic is installed by gradio, using compatible version range
+pydantic>=2.0.0,<3.0.0
 
 # GUI
+# Note: gradio brings in httpx, uvicorn, and other dependencies
+# Let gradio manage its own dependency versions
 gradio>=4.0.0
