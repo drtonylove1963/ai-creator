@@ -37,6 +37,11 @@ python examples/<example_name>.py
   - Building a CodeGeneratorAgent
   - Using custom agents in workflows
 
+- **`gui_example.py`**: Launching the GUI
+  - Programmatic GUI launch
+  - Configuration options
+  - Web-based interface
+
 ## Quick Start Examples
 
 ### Single Agent
@@ -72,6 +77,22 @@ This will demonstrate:
 - Implementing custom think() and act() methods
 - Using custom agents in complex workflows
 
+### GUI Interface
+
+```bash
+# Launch the GUI
+python launch_gui.py
+
+# Or from examples
+python examples/gui_example.py
+```
+
+This will demonstrate:
+- Web-based interface for agent management
+- Visual agent configuration
+- Interactive execution and monitoring
+- Built-in documentation and tools
+
 ## Creating Your Own Examples
 
 To create your own examples:
@@ -105,6 +126,24 @@ We recommend exploring the examples in this order:
 2. **agent_basics.py** - Learn about individual agents
 3. **agent_manager.py** - Explore multi-agent systems
 4. **custom_agent.py** - Build your own agents
+5. **gui_example.py** or `launch_gui.py` - Explore the visual interface
+
+## GUI Features
+
+The web interface (`launch_gui.py`) provides:
+
+- **Single Agent Tab**: Run individual agents with visual configuration
+- **Multi-Agent Tab**: Orchestrate multiple agents (Sequential/Parallel/Collaborative)
+- **Tools Tab**: Explore and test available agent tools
+- **History Tab**: Review past executions and results
+- **Documentation Tab**: Built-in help and guides
+
+Launch options:
+```bash
+python launch_gui.py              # Default (port 7860)
+python launch_gui.py --port 8080  # Custom port
+python launch_gui.py --share      # Public shareable link
+```
 
 ## Next Steps
 

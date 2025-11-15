@@ -11,6 +11,7 @@ AI Creator is a framework designed to help developers build AI applications with
 - **Modular Architecture**: Easy to extend and customize for your needs
 - **Agent System**: Build autonomous AI agents that can think and act
 - **Multi-Agent Orchestration**: Coordinate multiple agents working together
+- **Web-Based GUI**: Intuitive interface for managing and running agents
 - **Pre-built Agents**: TextAgent, ImageAgent, and AnalysisAgent ready to use
 - **Tool Registry**: Extensible tools that agents can use
 - **Memory System**: Agents can remember past interactions
@@ -65,6 +66,36 @@ responses = manager.run_sequential(
     agent_names=["Writer", "Analyzer"],
     input_data="Create and analyze a product description"
 )
+```
+
+### Using the GUI
+
+Launch the web interface for a visual way to interact with agents:
+
+```bash
+# Launch the GUI
+python launch_gui.py
+
+# Or launch on a custom port
+python launch_gui.py --port 8080
+
+# Create a shareable public link
+python launch_gui.py --share
+```
+
+The GUI provides:
+- **Single Agent Execution**: Run individual agents with easy configuration
+- **Multi-Agent Orchestration**: Coordinate multiple agents visually
+- **Agent Tools**: Explore and test available tools
+- **Execution History**: View and analyze past runs
+- **Built-in Documentation**: Integrated help and examples
+
+Programmatic GUI launch:
+```python
+from ai_creator import launch_gui
+
+# Launch the GUI from your code
+launch_gui(share=False, server_port=7860)
 ```
 
 ## Agent System
@@ -145,13 +176,20 @@ ai-creator/
 │   │   ├── image_agent.py
 │   │   ├── analysis_agent.py
 │   │   └── tools.py     # Agent tools
+│   ├── gui/             # Web-based GUI
+│   │   ├── app.py       # Main Gradio application
+│   │   ├── agent_ui.py  # Single agent interface
+│   │   ├── manager_ui.py # Multi-agent interface
+│   │   └── tools_ui.py  # Tools interface
 │   └── utils/           # Utility functions
 ├── examples/            # Example scripts
 │   ├── basic_usage.py
 │   ├── agent_basics.py
 │   ├── agent_manager.py
-│   └── custom_agent.py
+│   ├── custom_agent.py
+│   └── gui_example.py
 ├── tests/               # Test suite
+├── launch_gui.py        # GUI launcher script
 ├── requirements.txt     # Project dependencies
 └── README.md           # This file
 ```
@@ -164,10 +202,16 @@ See the `examples/` directory for comprehensive examples:
 - `agent_basics.py`: Individual agent usage
 - `agent_manager.py`: Multi-agent orchestration
 - `custom_agent.py`: Creating custom agents
+- `gui_example.py`: Launching the GUI programmatically
 
 Run any example:
 ```bash
 python examples/agent_basics.py
+```
+
+Or launch the GUI:
+```bash
+python launch_gui.py
 ```
 
 ## Development
